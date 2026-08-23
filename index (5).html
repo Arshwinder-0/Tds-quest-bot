@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>TDS MART — Premium Digital Marketplace</title>
+<meta name="description" content="TDS MART is a premium Discord marketplace for digital products, services, bots, memberships and more. Join our Discord community for products, support and secure transactions.">
+<meta name="theme-color" content="#07080A">
+<meta property="og:title" content="TDS MART — Premium Digital Marketplace">
+<meta property="og:description" content="TDS MART is a premium Discord marketplace for digital products, services, bots, memberships and more. Join our Discord community for products, support and secure transactions.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="logo.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B0D10'/%3E%3Crect x='0.75' y='0.75' width='30.5' height='30.5' rx='7.5' fill='none' stroke='%23C9A96E' stroke-opacity='0.55' stroke-width='1.5'/%3E%3Cpath d='M9.5 10.5h13M16 10.5v10.5' stroke='%23E4D2A8' stroke-width='2.4' stroke-linecap='round'/%3E%3Crect x='21.2' y='21.2' width='3.2' height='3.2' rx='0.7' transform='rotate(45 22.8 22.8)' fill='%23C9A96E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "TDS MART",
+  "description": "Premium Discord-based marketplace for digital products and services.",
+  "sameAs": ["https://discord.gg/tdsmart"]
+}
+</script>
+<style>
+/* ============================================================
+   TDS MART — Design System
+   ============================================================ */
+:root{
+  --bg-0:#07080A;
+  --bg-1:#0B0D10;
+  --surface-1:#111419;
+  --surface-2:#15181D;
+  --surface-3:#191C22;
+  --text-1:#F5F5F5;
+  --text-2:#8E949E;
+  --text-3:#6A707A;
+  --line:rgba(255,255,255,0.07);
+  --line-strong:rgba(255,255,255,0.13);
+  --accent:#C9A96E;
+  --accent-hi:#E4D2A8;
+  --accent-lo:#A88C55;
+  --accent-soft:rgba(201,169,110,0.10);
+  --accent-line:rgba(201,169,110,0.32);
+  --warn:#D9A25F;
+  --warn-soft:rgba(217,162,95,0.08);
+  --warn-line:rgba(217,162,95,0.30);
+  --info:#9DB4C9;
+  --info-soft:rgba(157,180,201,0.07);
+  --info-line:rgba(157,180,201,0.25);
+  --radius-sm:8px;
+  --radius-md:12px;
+  --radius-lg:16px;
+  --radius-xl:20px;
+  --shadow-card:0 1px 0 rgba(255,255,255,0.03) inset, 0 24px 48px -32px rgba(0,0,0,0.85);
+  --shadow-pop:0 2px 0 rgba(255,255,255,0.05) inset, 0 32px 64px -28px rgba(0,0,0,0.9);
+  --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe City Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html,body{overflow-x:clip}
+body{
+  margin:0;
+  background:var(--bg-0);
+  color:var(--text-1);
+  font-family:var(--font);
+  font-size:1rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+::selection{background:rgba(201,169,110,0.30);color:#FFF}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+button{font-family:inherit}
+[hidden]{display:none !important}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg-0)}
+::-webkit-scrollbar-thumb{background:#22262d;border-radius:8px;border:2px solid var(--bg-0)}
+::-webkit-scrollbar-thumb:hover{background:#2e333b}
+
+/* Focus */
+:focus{outline:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* Skip link */
+.skip-link{
+  position:fixed;top:12px;left:12px;z-index:200;
+  background:var(--surface-2);border:1px solid var(--line-strong);
+  color:var(--text-1);padding:10px 18px;border-radius:10px;font-size:0.875rem;font-weight:600;
+  text-decoration:none;transform:translateY(-200%);transition:transform .25s var(--ease);
+}
+.skip-link:focus-visible{transform:none}
+
+/* ============================================================
+   Ambient background
+   ============================================================ */
+.bg-ambient{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.bg-ambient::before{
+  content:"";position:absolute;inset:-20%;
+  background:
+    radial-gradient(46% 34% at 18% 0%, rgba(201,169,110,0.055), transparent 70%),
+    radial-gradient(40% 30% at 88% 12%, rgba(157,180,201,0.035), transparent 70%),
+    radial-gradient(50% 40% at 50% 110%, rgba(201,169,110,0.03), transparent 70%);
+  animation:ambient 40s ease-in-out infinite alternate;
+}
+.bg-noise{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@keyframes ambient{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  100%{transform:translate3d(0,-1.5%,0) scale(1.04)}
+}
+
+/* ============================================================
+   Layout primitives
+   ============================================================ */
+.wrap{width:min(1180px,100% - 48px);margin-inline:auto}
+.wrap--narrow{width:min(860px,100% - 48px);margin-inline:auto}
+.section{padding:clamp(72px,9vw,128px) 0;border-top:1px solid var(--line);position:relative}
+.section--flush{border-top:0}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 18px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:linear-gradient(90deg,transparent,var(--accent))}
+.h2{
+  font-size:clamp(1.7rem,1.15rem + 1.9vw,2.45rem);
+  line-height:1.15;font-weight:700;letter-spacing:-0.02em;
+  margin:0 0 16px;color:var(--text-1);
+}
+.section-sub{color:var(--text-2);font-size:1.0625rem;max-width:56ch;margin:0}
+.section-head{margin-bottom:clamp(36px,5vw,60px)}
+.section-head--center{text-align:center}
+.section-head--center .eyebrow::before{display:none}
+.section-head--center .eyebrow::after{display:none}
+.section-head--center .section-sub{margin-inline:auto}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-weight:600;font-size:0.9375rem;line-height:1;letter-spacing:0.005em;
+  padding:15px 26px;border-radius:11px;border:1px solid transparent;
+  cursor:pointer;text-decoration:none;white-space:nowrap;
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease),
+             background-color .22s var(--ease),border-color .22s var(--ease),color .22s var(--ease);
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:active{transform:translateY(1px) scale(0.99)}
+.btn .icon{width:17px;height:17px;flex:none}
+
+.btn-primary{
+  background:linear-gradient(180deg,var(--accent-hi),var(--accent) 55%,#BC9C63);
+  color:#141006;
+  box-shadow:0 1px 0 rgba(255,255,255,0.35) inset,0 10px 28px -14px rgba(201,169,110,0.55);
+}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,0.4) inset,0 16px 36px -14px rgba(201,169,110,0.6)}
+.btn-primary .icon{color:#3D3113}
+
+.btn-ghost{
+  background:rgba(255,255,255,0.025);
+  border-color:var(--line-strong);
+  color:var(--text-1);
+}
+.btn-ghost:hover{transform:translateY(-1px);border-color:rgba(255,255,255,0.24);background:rgba(255,255,255,0.05)}
+
+.btn-discord{border-color:var(--line-strong);background:rgba(255,255,255,0.025);color:var(--text-1)}
+.btn-discord:hover{transform:translateY(-1px);border-color:var(--accent-line);background:var(--accent-soft)}
+.btn-discord .icon{color:var(--accent)}
+
+.btn--sm{padding:11px 18px;font-size:0.875rem;border-radius:10px}
+
+/* ============================================================
+   Header
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(7,8,10,0.72);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  backdrop-filter:blur(16px) saturate(150%);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s var(--ease),background-color .3s var(--ease);
+}
+.site-header.scrolled{border-bottom-color:var(--line);background:rgba(7,8,10,0.86)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
+
+.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;border-radius:8px}
+.brand-mark{width:32px;height:32px;flex:none;filter:drop-shadow(0 4px 12px rgba(201,169,110,0.18))}
+.brand-name{font-size:1rem;font-weight:750;letter-spacing:0.015em;color:var(--text-1);white-space:nowrap}
+.brand-name small{display:block;font-size:0.5625rem;font-weight:650;letter-spacing:0.3em;color:var(--text-3);text-transform:uppercase;margin-top:1px}
+
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;margin:0;padding:0}
+.nav-links a{
+  display:block;padding:9px 15px;border-radius:9px;font-size:0.9rem;font-weight:550;
+  color:var(--text-2);text-decoration:none;
+  transition:color .2s var(--ease),background-color .2s var(--ease);
+}
+.nav-links a:hover{color:var(--text-1);background:rgba(255,255,255,0.045)}
+.nav-links a[aria-current="page"]{color:var(--accent);background:var(--accent-soft)}
+.header-cta{display:flex;align-items:center;gap:10px}
+
+.menu-toggle{
+  display:none;width:44px;height:44px;border-radius:11px;border:1px solid var(--line-strong);
+  background:rgba(255,255,255,0.02);cursor:pointer;position:relative;
+  align-items:center;justify-content:center;flex-direction:column;gap:5px;
+  transition:border-color .2s var(--ease),background-color .2s var(--ease);
+}
+.menu-toggle:hover{border-color:rgba(255,255,255,0.25)}
+.menu-toggle span{
+  display:block;width:17px;height:1.5px;background:var(--text-1);border-radius:2px;
+  transition:transform .3s var(--ease),opacity .2s var(--ease);
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(3.25px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] span:nth-child(2){transform:translateY(-3.25px) rotate(-45deg)}
+
+.mobile-menu{
+  position:fixed;inset:0;z-index:90;display:flex;flex-direction:column;justify-content:center;
+  padding:96px 28px 40px;
+  background:rgba(7,8,10,0.985);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  opacity:0;visibility:hidden;transform:translateY(-8px);
+  transition:opacity .3s var(--ease),transform .3s var(--ease),visibility 0s .3s;
+}
+.mobile-menu.open{opacity:1;visibility:visible;transform:none;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.mobile-menu nav ul{list-style:none;margin:0;padding:0}
+.mobile-menu nav a{
+  display:flex;align-items:baseline;gap:16px;padding:16px 4px;text-decoration:none;
+  font-size:1.5rem;font-weight:700;letter-spacing:-0.015em;color:var(--text-1);
+  border-bottom:1px solid var(--line);
+  opacity:0;transform:translateY(10px);transition:opacity .4s var(--ease),transform .4s var(--ease),color .2s;
+}
+.mobile-menu.open nav a{opacity:1;transform:none}
+.mobile-menu nav a i{font-style:normal;font-size:0.75rem;font-weight:650;color:var(--accent);letter-spacing:0.1em}
+.mobile-menu nav a:hover{color:var(--accent)}
+.mobile-menu-cta{margin-top:32px;display:flex;flex-direction:column;gap:12px}
+body.menu-open{overflow:hidden}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero{position:relative;padding:clamp(56px,8vw,110px) 0 clamp(64px,8vw,104px);overflow:clip}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.032) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.032) 1px,transparent 1px);
+  background-size:54px 54px;
+  -webkit-mask-image:radial-gradient(72% 62% at 50% 8%,#000 30%,transparent 78%);
+  mask-image:radial-gradient(72% 62% at 50% 8%,#000 30%,transparent 78%);
+}
+.hero-grid{
+  display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,0.98fr);
+  gap:clamp(40px,5vw,72px);align-items:center;position:relative;
+}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--line-strong);border-radius:999px;
+  background:rgba(255,255,255,0.025);
+  padding:7px 16px 7px 12px;font-size:0.8rem;font-weight:550;color:var(--text-2);
+  text-decoration:none;margin-bottom:28px;
+  transition:border-color .25s var(--ease),color .25s var(--ease);
+}
+.hero-badge:hover{border-color:var(--accent-line);color:var(--text-1)}
+.hero-badge .pulse{
+  width:7px;height:7px;border-radius:50%;background:var(--accent);position:relative;flex:none;
+}
+.hero-badge .pulse::after{
+  content:"";position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid var(--accent);opacity:0;animation:pulse 2.6s var(--ease) infinite;
+}
+@keyframes pulse{0%{transform:scale(0.4);opacity:0.8}70%{transform:scale(1.3);opacity:0}100%{opacity:0}}
+
+.hero h1{
+  font-size:clamp(2.35rem,1.05rem + 4.1vw,3.8rem);
+  line-height:1.06;font-weight:750;letter-spacing:-0.03em;
+  margin:0 0 22px;text-wrap:balance;
+}
+.hero h1 .tone{
+  background:linear-gradient(94deg,#EFE0BC 5%,var(--accent) 60%,#B4985F);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-lede{color:var(--text-2);font-size:clamp(1.02rem,0.96rem + 0.35vw,1.15rem);max-width:54ch;margin:0 0 36px}
+.hero-lede strong{color:#C6CBD3;font-weight:600}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:36px}
+
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 26px;padding-top:26px;border-top:1px solid var(--line)}
+.hero-meta-item{display:inline-flex;align-items:center;gap:9px;font-size:0.84rem;color:var(--text-2);font-weight:500}
+.hero-meta-item .icon{width:15px;height:15px;color:var(--accent);flex:none}
+
+/* Hero visual composition */
+.hero-visual{position:relative;justify-self:center;width:min(460px,100%)}
+.hv-stack{position:relative}
+.hv-stack::before{
+  content:"";position:absolute;inset:-12%;
+  background:radial-gradient(52% 48% at 62% 36%,rgba(201,169,110,0.14),transparent 72%);
+  filter:blur(2px);
+}
+.hv-back{
+  position:absolute;inset:0;border:1px solid var(--line);border-radius:var(--radius-xl);
+  transform:translate(20px,20px) rotate(1.1deg);
+  background:linear-gradient(160deg,rgba(255,255,255,0.02),transparent 55%);
+  pointer-events:none;
+}
+.hv-card{
+  position:relative;background:linear-gradient(175deg,var(--surface-2) 0%,var(--surface-1) 58%,#101318 100%);
+  border:1px solid var(--line-strong);border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-pop);
+  overflow:hidden;will-change:transform;
+}
+.hv-card::before{
+  content:"";position:absolute;top:0;left:8%;right:8%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(228,210,168,0.35),transparent);
+}
+.hv-head{display:flex;align-items:center;gap:12px;padding:20px 22px;border-bottom:1px solid var(--line)}
+.hv-head .brand-mark{width:28px;height:28px}
+.hv-brand{font-size:0.9rem;font-weight:700;letter-spacing:0.02em}
+.hv-brand small{display:block;font-size:0.625rem;font-weight:650;letter-spacing:0.24em;color:var(--text-3);text-transform:uppercase}
+.hv-tag{
+  margin-left:auto;display:inline-flex;align-items:center;gap:7px;
+  font-size:0.68rem;font-weight:650;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);
+  border:1px solid var(--accent-line);border-radius:999px;padding:5px 11px;background:var(--accent-soft);
+}
+.hv-tag i{width:5px;height:5px;border-radius:50%;background:var(--accent);font-style:normal}
+.hv-list{padding:10px 8px}
+.hv-row{
+  display:flex;align-items:center;gap:14px;padding:13px 14px;border-radius:12px;
+  text-decoration:none;transition:background-color .2s var(--ease),transform .2s var(--ease);
+}
+.hv-row:hover{background:rgba(255,255,255,0.035);transform:translateX(3px)}
+.hv-ico{
+  width:36px;height:36px;border-radius:10px;flex:none;display:grid;place-items:center;
+  background:rgba(255,255,255,0.035);border:1px solid var(--line);
+}
+.hv-ico .icon{width:17px;height:17px;color:var(--accent)}
+.hv-row-txt{min-width:0}
+.hv-row-txt b{display:block;font-size:0.9rem;font-weight:600;letter-spacing:0.005em}
+.hv-row-txt span{display:block;font-size:0.74rem;color:var(--text-3);margin-top:1px}
+.hv-row .icon-arr{width:14px;height:14px;color:var(--text-3);margin-left:auto;flex:none;transition:color .2s,transform .2s var(--ease)}
+.hv-row:hover .icon-arr{color:var(--accent);transform:translateX(2px)}
+.hv-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:17px 22px;border-top:1px solid var(--line);
+  font-size:0.84rem;font-weight:600;color:var(--text-2);text-decoration:none;
+  transition:color .2s var(--ease),background-color .2s var(--ease);
+}
+.hv-foot:hover{color:var(--text-1);background:rgba(255,255,255,0.025)}
+.hv-foot .l{display:inline-flex;align-items:center;gap:10px}
+.hv-foot .icon{width:16px;height:16px;color:var(--accent)}
+
+.hv-chip{
+  position:absolute;display:inline-flex;align-items:center;gap:8px;
+  background:rgba(21,24,29,0.9);border:1px solid var(--line-strong);border-radius:999px;
+  padding:8px 15px;font-size:0.76rem;font-weight:600;color:#C9CED6;
+  box-shadow:0 16px 36px -18px rgba(0,0,0,0.8);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  animation:float 7s ease-in-out infinite;
+}
+.hv-chip .icon{width:14px;height:14px;color:var(--accent)}
+.hv-chip--a{top:-16px;right:-6px;animation-delay:-1.2s}
+.hv-chip--b{bottom:34px;left:-22px;animation-delay:-3.6s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
+/* ============================================================
+   Trust
+   ============================================================ */
+.trust-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.trust-card{
+  background:linear-gradient(175deg,var(--surface-1),#0F1216);
+  border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:26px 22px;position:relative;overflow:hidden;
+  transition:transform .28s var(--ease),border-color .28s var(--ease),box-shadow .28s var(--ease);
+}
+.trust-card::after{
+  content:"";position:absolute;top:0;left:24px;right:24px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.09),transparent);
+}
+.trust-card:hover{transform:translateY(-4px);border-color:var(--accent-line);box-shadow:var(--shadow-card)}
+.trust-ico{
+  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;margin-bottom:18px;
+  background:var(--accent-soft);border:1px solid var(--accent-line);
+}
+.trust-ico .icon{width:19px;height:19px;color:var(--accent)}
+.trust-card h3{margin:0 0 8px;font-size:0.98rem;font-weight:650;letter-spacing:0.005em}
+.trust-card p{margin:0;font-size:0.86rem;color:var(--text-2);line-height:1.6}
+
+/* ============================================================
+   Products
+   ============================================================ */
+.products-note{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--info-soft);border:1px solid var(--info-line);border-radius:var(--radius-md);
+  padding:16px 18px;margin-bottom:36px;max-width:820px;
+}
+.products-note .icon{width:17px;height:17px;color:var(--info);flex:none;margin-top:3px}
+.products-note p{margin:0;font-size:0.9rem;color:#B9C4CF}
+.products-note a{color:#D7E1EA;text-decoration-color:rgba(157,180,201,0.5);text-underline-offset:3px}
+.products-note a:hover{color:#fff;text-decoration-color:#D7E1EA}
+
+.products-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.product-card{
+  display:flex;flex-direction:column;
+  background:linear-gradient(175deg,var(--surface-1) 0%,#0F1216 100%);
+  border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;
+  transition:transform .28s var(--ease),border-color .28s var(--ease),box-shadow .28s var(--ease);
+}
+.product-card:hover{transform:translateY(-4px);border-color:var(--accent-line);box-shadow:var(--shadow-card)}
+.product-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.product-ico{
+  width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+  background:rgba(255,255,255,0.03);border:1px solid var(--line);
+  transition:background-color .28s var(--ease),border-color .28s var(--ease);
+}
+.product-card:hover .product-ico{background:var(--accent-soft);border-color:var(--accent-line)}
+.product-ico .icon{width:20px;height:20px;color:var(--accent)}
+.product-cat{
+  font-size:0.66rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--text-3);border:1px solid var(--line);border-radius:999px;padding:4px 10px;white-space:nowrap;
+}
+.product-card h3{margin:0 0 8px;font-size:1.02rem;font-weight:650;letter-spacing:0.002em}
+.product-card .desc{margin:0 0 22px;font-size:0.865rem;color:var(--text-2);line-height:1.62;flex:1}
+.product-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding-top:16px;border-top:1px solid var(--line);
+}
+.product-foot .avail{font-size:0.76rem;color:var(--text-3);font-weight:500}
+.product-link{
+  display:inline-flex;align-items:center;gap:7px;font-size:0.84rem;font-weight:650;
+  color:var(--accent);text-decoration:none;border-radius:6px;
+}
+.product-link .icon{width:14px;height:14px;transition:transform .22s var(--ease)}
+.product-link:hover .icon{transform:translateX(3px)}
+.products-cta{margin-top:44px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.products-cta p{margin:0;color:var(--text-2);font-size:0.95rem}
+.products-cta p b{color:var(--text-1);font-weight:650}
+
+/* ============================================================
+   Before you buy
+   ============================================================ */
+.byb{
+  position:relative;border:1px solid var(--warn-line);border-radius:var(--radius-xl);
+  background:
+    radial-gradient(80% 120% at 50% 0%,rgba(217,162,95,0.06),transparent 60%),
+    linear-gradient(175deg,var(--surface-1),#0E1115);
+  padding:clamp(32px,4.5vw,52px);overflow:hidden;
+}
+.byb::before,.byb::after{
+  content:"";position:absolute;width:34px;height:34px;pointer-events:none;
+  border:1px solid var(--warn-line);
+}
+.byb::before{top:-1px;left:-1px;border-right:0;border-bottom:0;border-radius:14px 0 0 0}
+.byb::after{bottom:-1px;right:-1px;border-left:0;border-top:0;border-radius:0 0 14px 0}
+.byb-grid{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.byb-label{
+  display:inline-flex;align-items:center;gap:9px;font-size:0.7rem;font-weight:700;
+  letter-spacing:0.18em;text-transform:uppercase;color:var(--warn);margin-bottom:16px;
+}
+.byb-label .icon{width:15px;height:15px}
+.byb h2{margin:0 0 14px;font-size:clamp(1.5rem,1.1rem + 1.4vw,2rem);letter-spacing:-0.02em;font-weight:700}
+.byb-grid>div>p{margin:0;color:var(--text-2);font-size:0.97rem}
+.byb-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.byb-points{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.byb-points li{
+  display:flex;gap:16px;padding:17px 4px;border-top:1px solid var(--line);
+  font-size:0.93rem;color:#C3C8D0;
+}
+.byb-points li:first-child{border-top:0}
+.byb-points li:last-child{padding-bottom:0}
+.byb-num{
+  font-size:0.72rem;font-weight:700;color:var(--warn);letter-spacing:0.06em;
+  font-variant-numeric:tabular-nums;padding-top:3px;flex:none;
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-grid{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:clamp(36px,5vw,72px);align-items:start}
+.faq-side{position:sticky;top:104px}
+.faq-side .section-sub{font-size:0.98rem}
+.faq-side-cta{margin-top:26px;display:inline-flex;align-items:center;gap:9px;font-size:0.88rem;font-weight:600;color:var(--accent);text-decoration:none}
+.faq-side-cta .icon{width:15px;height:15px;transition:transform .2s var(--ease)}
+.faq-side-cta:hover .icon{transform:translateX(3px)}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{
+  background:linear-gradient(175deg,var(--surface-1),#0F1216);
+  border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;
+  transition:border-color .25s var(--ease);
+}
+.faq-item.open{border-color:var(--line-strong)}
+.faq-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:19px 22px;background:none;border:0;cursor:pointer;text-align:left;
+  color:var(--text-1);font-size:0.97rem;font-weight:600;line-height:1.45;
+}
+.faq-q:hover{color:#fff}
+.faq-q .fx{
+  width:26px;height:26px;flex:none;border-radius:8px;display:grid;place-items:center;
+  border:1px solid var(--line-strong);transition:transform .3s var(--ease),border-color .25s,background-color .25s;
+}
+.faq-q .fx::before,.faq-q .fx::after{
+  content:"";position:absolute;width:10px;height:1.5px;background:var(--text-2);border-radius:2px;transition:background-color .25s,transform .3s var(--ease);
+}
+.faq-q .fx{position:relative}
+.faq-q .fx::after{transform:rotate(90deg)}
+.faq-item.open .fx{transform:rotate(45deg);border-color:var(--accent-line);background:var(--accent-soft)}
+.faq-item.open .fx::before,.faq-item.open .fx::after{background:var(--accent)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s var(--ease)}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+.faq-a-in{overflow:hidden}
+.faq-a-in p{margin:0;padding:0 22px 20px;color:var(--text-2);font-size:0.9rem;line-height:1.68}
+.faq-a-in a{color:#C9CED6;text-decoration-color:rgba(201,169,110,0.5);text-underline-offset:3px}
+.faq-a-in a:hover{color:#fff}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta{position:relative;text-align:center;overflow:clip}
+.cta::before{
+  content:"";position:absolute;left:50%;top:-30%;width:min(760px,120%);height:80%;transform:translateX(-50%);
+  background:radial-gradient(50% 50% at 50% 50%,rgba(201,169,110,0.10),transparent 70%);
+  pointer-events:none;
+}
+.cta::after{
+  content:"";position:absolute;left:50%;bottom:-52%;width:520px;height:520px;transform:translateX(-50%);
+  border:1px solid rgba(255,255,255,0.05);border-radius:50%;pointer-events:none;
+}
+.cta .wrap--narrow{position:relative}
+.cta-mark{width:52px;height:52px;margin:0 auto 26px;filter:drop-shadow(0 10px 26px rgba(201,169,110,0.22))}
+.cta h2{font-size:clamp(1.9rem,1.25rem + 2.4vw,2.9rem);letter-spacing:-0.025em;font-weight:750;margin:0 0 16px}
+.cta p{color:var(--text-2);font-size:1.05rem;max-width:46ch;margin:0 auto 34px}
+.cta-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
+.cta-hint{margin-top:26px;font-size:0.8rem;color:var(--text-3)}
+.cta-hint a{color:var(--text-2);text-decoration:none;border-bottom:1px solid var(--line-strong)}
+.cta-hint a:hover{color:var(--text-1)}
+
+/* ============================================================
+   Documentation layout (Terms / Rules)
+   ============================================================ */
+.doc{padding:clamp(48px,6vw,80px) 0 clamp(80px,9vw,128px)}
+.doc-hero{padding:clamp(40px,5vw,64px) 0 clamp(36px,4vw,52px)}
+.doc-hero .crumb{
+  display:inline-flex;align-items:center;gap:8px;font-size:0.78rem;font-weight:600;color:var(--text-3);
+  text-decoration:none;margin-bottom:22px;border-radius:6px;
+}
+.doc-hero .crumb:hover{color:var(--text-2)}
+.doc-hero .crumb .icon{width:13px;height:13px}
+.doc-hero h1{font-size:clamp(2rem,1.3rem + 2.6vw,3rem);letter-spacing:-0.028em;font-weight:750;margin:0 0 14px}
+.doc-hero .section-sub{font-size:1.02rem}
+.doc-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.doc-meta div{font-size:0.8rem;color:var(--text-3)}
+.doc-meta div b{display:block;font-size:0.82rem;color:var(--text-2);font-weight:650;letter-spacing:0.02em}
+
+.doc-grid{display:grid;grid-template-columns:250px minmax(0,1fr);gap:clamp(40px,5vw,72px);align-items:start;border-top:1px solid var(--line);padding-top:clamp(40px,5vw,56px)}
+.doc-nav{position:sticky;top:100px;max-height:calc(100vh - 128px);overflow-y:auto;padding:4px 2px 24px;scrollbar-width:thin}
+.doc-nav-title{font-size:0.68rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);margin:0 0 10px;padding-left:14px}
+.doc-nav-group{margin-bottom:22px}
+.doc-nav ul{list-style:none;margin:0;padding:0}
+.doc-nav a{
+  display:block;padding:7px 14px;border-left:1px solid var(--line);
+  font-size:0.855rem;font-weight:550;color:var(--text-2);text-decoration:none;line-height:1.4;
+  transition:color .2s var(--ease),border-color .2s var(--ease),background-color .2s var(--ease);
+}
+.doc-nav a:hover{color:var(--text-1)}
+.doc-nav a.active{color:var(--accent);border-left-color:var(--accent);background:linear-gradient(90deg,rgba(201,169,110,0.09),transparent 75%);font-weight:650}
+.doc-nav a i{font-style:normal;font-variant-numeric:tabular-nums;font-size:0.72rem;color:var(--text-3);margin-right:8px}
+.doc-nav a.active i{color:var(--accent)}
+
+.doc-body{min-width:0}
+.doc-sec{scroll-margin-top:104px}
+.doc-sec + .doc-sec{margin-top:28px}
+.doc-sec-card{
+  background:linear-gradient(175deg,var(--surface-1),#0F1216);
+  border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:clamp(24px,3vw,36px);position:relative;
+}
+.doc-sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:18px}
+.doc-num{
+  font-size:0.78rem;font-weight:700;color:var(--accent);letter-spacing:0.08em;
+  font-variant-numeric:tabular-nums;flex:none;
+  border:1px solid var(--accent-line);background:var(--accent-soft);
+  border-radius:8px;padding:4px 9px;
+}
+.doc-sec-head h2{margin:0;font-size:1.28rem;font-weight:680;letter-spacing:-0.012em}
+.doc-sec p{margin:0 0 14px;color:#C3C8D0;font-size:0.95rem}
+.doc-sec p:last-child{margin-bottom:0}
+.doc-sec ul{margin:0 0 14px;padding-left:2px;list-style:none;display:flex;flex-direction:column;gap:9px}
+.doc-sec ul:last-child{margin-bottom:0}
+.doc-sec ul li{position:relative;padding-left:22px;color:#C3C8D0;font-size:0.93rem;line-height:1.6}
+.doc-sec ul li::before{
+  content:"";position:absolute;left:2px;top:0.62em;width:7px;height:7px;
+  border:1px solid var(--accent-line);background:var(--accent-soft);border-radius:2px;transform:rotate(45deg);
+}
+.callout{
+  display:flex;gap:14px;border-radius:var(--radius-md);padding:16px 18px;margin:4px 0 16px;
+}
+.callout:last-child{margin-bottom:0}
+.callout .icon{width:17px;height:17px;flex:none;margin-top:3px}
+.callout b{display:block;font-size:0.82rem;font-weight:700;letter-spacing:0.04em;margin-bottom:4px}
+.callout p{margin:0 !important;font-size:0.88rem !important;line-height:1.6}
+.callout--warn{background:var(--warn-soft);border:1px solid var(--warn-line)}
+.callout--warn .icon{color:var(--warn)}
+.callout--warn b{color:var(--warn)}
+.callout--warn p{color:#CDB9A2}
+.callout--info{background:var(--info-soft);border:1px solid var(--info-line)}
+.callout--info .icon{color:var(--info)}
+.callout--info b{color:var(--info)}
+.callout--info p{color:#B4C0CC}
+.doc-group-head{
+  display:flex;align-items:center;gap:14px;margin:36px 0 6px;scroll-margin-top:104px;
+}
+.doc-group-head:first-child{margin-top:0}
+.doc-group-head::after{content:"";flex:1;height:1px;background:var(--line)}
+.doc-group-head h2{margin:0;font-size:0.78rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-2);white-space:nowrap}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer{border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,0.012),transparent 40%),var(--bg-0);position:relative}
+.footer-grid{
+  display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));
+  gap:clamp(32px,4vw,56px);padding:clamp(52px,6vw,72px) 0 44px;
+}
+.footer-brand p{margin:16px 0 0;color:var(--text-2);font-size:0.9rem;max-width:34ch}
+.footer-brand .brand{margin-bottom:4px}
+.footer-col h3{margin:0 0 18px;font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3)}
+.footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.footer-col a{font-size:0.9rem;color:var(--text-2);text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s var(--ease)}
+.footer-col a:hover{color:var(--text-1)}
+.footer-col a .icon{width:14px;height:14px;color:var(--text-3)}
+.footer-col a:hover .icon{color:var(--accent)}
+.footer-bottom{
+  border-top:1px solid var(--line);padding:26px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.footer-bottom p{margin:0;font-size:0.8rem;color:var(--text-3)}
+.footer-bottom .note{font-size:0.74rem}
+.to-top{font-size:0.8rem;color:var(--text-3);text-decoration:none;display:inline-flex;align-items:center;gap:7px;border-radius:6px}
+.to-top:hover{color:var(--text-1)}
+.to-top .icon{width:13px;height:13px}
+
+/* ============================================================
+   Reveal animations
+   ============================================================ */
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+[data-reveal].in{opacity:1;transform:none}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width:1080px){
+  .products-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .trust-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:56px}
+  .hero-visual{width:min(440px,100%)}
+  .faq-grid{grid-template-columns:1fr;gap:36px}
+  .faq-side{position:static}
+  .byb-grid{grid-template-columns:1fr;gap:28px}
+  .doc-grid{grid-template-columns:1fr;gap:0}
+  .doc-nav{
+    position:static;max-height:none;overflow:visible;padding:0 0 28px;
+    display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+    border-bottom:1px solid var(--line);margin-bottom:32px;scrollbar-width:none;
+  }
+  .doc-nav::-webkit-scrollbar{display:none}
+  .doc-nav-group{margin:0;display:flex;gap:8px;flex:none}
+  .doc-nav-title{display:none}
+  .doc-nav ul{display:flex;gap:8px}
+  .doc-nav a{
+    border-left:0;border:1px solid var(--line);border-radius:999px;padding:8px 15px;
+    white-space:nowrap;font-size:0.83rem;flex:none;
+  }
+  .doc-nav a.active{border-color:var(--accent-line);background:var(--accent-soft)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-brand{grid-column:1/-1}
+}
+@media (max-width:880px){
+  .nav-links,.header-cta .btn-label{display:none}
+  .menu-toggle{display:flex}
+}
+@media (max-width:760px){
+  .wrap,.wrap--narrow{width:calc(100% - 40px)}
+  .products-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .trust-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero{padding-top:44px}
+  .hero-actions .btn{flex:1 1 auto}
+  .hv-chip--b{left:-8px}
+  .hv-chip--a{right:-4px}
+}
+@media (max-width:560px){
+  .products-grid{grid-template-columns:1fr}
+  .trust-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .trust-card{padding:20px 16px}
+  .product-card{padding:20px}
+  .products-cta{flex-direction:column;align-items:flex-start}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:10px}
+  .doc-sec-head{flex-wrap:wrap;gap:10px}
+  .hv-chip--b{display:none}
+  .hv-back{transform:translate(12px,12px) rotate(1deg)}
+}
+@media (max-width:380px){
+  .trust-grid{grid-template-columns:1fr}
+  .hero-actions{flex-direction:column}
+  .hero-actions .btn{width:100%}
+}
+
+/* ============================================================
+   Reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}
+  [data-reveal]{opacity:1;transform:none}
+  .hv-chip{animation:none}
+  .bg-ambient::before{animation:none}
+  .hero-badge .pulse::after{animation:none;opacity:0}
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- SVG icon sprite -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-mark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E4D2A8"/>
+      <stop offset="1" stop-color="#A88C55"/>
+    </linearGradient>
+  </defs>
+  <symbol id="i-mark" viewBox="0 0 32 32">
+    <rect x="0.75" y="0.75" width="30.5" height="30.5" rx="8.5" fill="rgba(201,169,110,0.06)" stroke="url(#g-mark)" stroke-opacity="0.8" stroke-width="1.5"/>
+    <path d="M9.5 10.5h13M16 10.5v10" stroke="#E4D2A8" stroke-width="2.4" stroke-linecap="round"/>
+    <rect x="21.1" y="21.1" width="3.4" height="3.4" rx="0.75" transform="rotate(45 22.8 22.8)" fill="#C9A96E"/>
+  </symbol>
+  <symbol id="i-discord" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.291.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none">
+    <path d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-up" viewBox="0 0 24 24" fill="none">
+    <path d="M12 19V5m0 0-6 6m6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-back" viewBox="0 0 24 24" fill="none">
+    <path d="M19 12H5m0 0 6 6m-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none">
+    <path d="m4.5 12.5 5 5 10-11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-gem" viewBox="0 0 24 24" fill="none">
+    <path d="M7 3h10l4 6-9 12L3 9l4-6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M3 9h18M9.5 3 8 9l4 12M14.5 3 16 9l-4 12" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" opacity="0.65"/>
+  </symbol>
+  <symbol id="i-cursor" viewBox="0 0 24 24" fill="none">
+    <path d="M5 4l6.5 16 2.2-6.3L20 11.5 5 4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24" fill="none">
+    <path d="M4 13v-2a8 8 0 0 1 16 0v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <rect x="3" y="13" width="4" height="6" rx="1.6" stroke="currentColor" stroke-width="1.6"/>
+    <rect x="17" y="13" width="4" height="6" rx="1.6" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M19 19v.5a2.5 2.5 0 0 1-2.5 2.5H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-file" viewBox="0 0 24 24" fill="none">
+    <path d="M6 3h8l4 4v14H6V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M14 3v4h4M9 12h6M9 15.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24" fill="none">
+    <path d="M13 3 5 13.5h6L11 21l8-10.5h-6L13 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24" fill="none">
+    <path d="M12 3c3.5 1 6 4 6 8 0 2.5-1 5-3 7l-3 3-3-3c-2-2-3-4.5-3-7 0-4 2.5-7 6-8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="12" cy="10.5" r="2.2" stroke="currentColor" stroke-width="1.5"/>
+  </symbol>
+  <symbol id="i-users" viewBox="0 0 24 24" fill="none">
+    <circle cx="9" cy="8.5" r="3.5" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M16 5.4a3.4 3.4 0 0 1 0 6.4M18 14.8c2 .7 3.4 2.5 3.4 5.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-users-off" viewBox="0 0 24 24" fill="none">
+    <circle cx="9" cy="8.5" r="3.5" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M16.5 4.5v6M13.5 7.5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-card" viewBox="0 0 24 24" fill="none">
+    <rect x="3" y="5.5" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M3 10h18M6.5 14.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-target" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/>
+    <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="12" cy="12" r="1.2" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24" fill="none">
+    <rect x="6.5" y="6.5" width="11" height="11" rx="2.5" stroke="currentColor" stroke-width="1.6"/>
+    <rect x="10" y="10" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M9.5 3v3.5M14.5 3v3.5M9.5 17.5V21M14.5 17.5V21M3 9.5h3.5M3 14.5h3.5M17.5 9.5H21M17.5 14.5H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-coins" viewBox="0 0 24 24" fill="none">
+    <circle cx="9" cy="9.5" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M5.6 14.2c.9.7 2.1 1.1 3.4 1.1 3 0 5.5-2.4 5.5-5.4 0-1.2-.4-2.3-1-3.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M12 19.7c.9.5 1.9.8 3 .8 3 0 5.5-2.4 5.5-5.4 0-1.9-1-3.6-2.5-4.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24" fill="none">
+    <path d="M12 4 2.8 19.5h18.4L12 4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M12 10v4.2M12 17.1v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M12 11v5M12 7.8v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="none">
+    <path d="m12 3.5 2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9l-5.3 2.7 1-5.8-4.2-4.1 5.9-.9L12 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none">
+    <path d="M12 3 5 5.5v5c0 4.6 2.9 8.6 7 10.5 4.1-1.9 7-5.9 7-10.5v-5L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="m8.8 11.8 2.2 2.2 4.2-4.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<div class="bg-ambient" aria-hidden="true"></div>
+<div class="bg-noise" aria-hidden="true"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a class="brand" href="#" data-route="home" aria-label="TDS MART — Home">
+      <svg class="brand-mark" aria-hidden="true"><use href="#i-mark"/></svg>
+      <span class="brand-name">TDS MART<small>Marketplace</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#" data-route="home" data-spy="home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#/terms">Terms</a></li>
+        <li><a href="#/rules">Rules</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn-discord btn--sm" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer">
+        <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>
+        <span class="btn-label">Discord</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <ul>
+      <li><a href="#" data-route="home"><i>01</i>Home</a></li>
+      <li><a href="#products"><i>02</i>Products</a></li>
+      <li><a href="#/terms"><i>03</i>Terms</a></li>
+      <li><a href="#/rules"><i>04</i>Rules</a></li>
+      <li><a href="#faq"><i>05</i>FAQ</a></li>
+    </ul>
+  </nav>
+  <div class="mobile-menu-cta">
+    <a class="btn btn-primary" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer">
+      <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>
+      Join TDS MART
+    </a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ================= HOME VIEW ================= -->
+  <div class="view" id="view-home">
+
+    <section class="hero section--flush" aria-labelledby="heroTitle">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <a class="hero-badge" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer">
+            <span class="pulse" aria-hidden="true"></span>
+            Official Discord community
+            <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+          <h1 id="heroTitle">Premium digital goods.<br><span class="tone">Delivered with confidence.</span></h1>
+          <p class="hero-lede">TDS MART is a Discord-native marketplace for <strong>digital products and services</strong> — Nitro and trial accounts, server boosts, members, hosted bots, VCCs and more — handled through a structured ticket system with clear, published terms.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>
+              Join TDS MART
+            </a>
+            <a class="btn btn-ghost" href="#products">
+              View Products
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+          </div>
+          <div class="hero-meta">
+            <span class="hero-meta-item"><svg class="icon" aria-hidden="true"><use href="#i-cursor"/></svg>Manual delivery</span>
+            <span class="hero-meta-item"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>Clear terms</span>
+            <span class="hero-meta-item"><svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg>Ticket-based support</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hv-stack" id="hvStack">
+            <div class="hv-back"></div>
+            <div class="hv-card" id="hvCard">
+              <div class="hv-head">
+                <svg class="brand-mark"><use href="#i-mark"/></svg>
+                <div class="hv-brand">TDS MART<small>Marketplace</small></div>
+                <span class="hv-tag"><i></i>Official</span>
+              </div>
+              <div class="hv-list">
+                <a class="hv-row" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer" tabindex="-1">
+                  <span class="hv-ico"><svg class="icon"><use href="#i-bolt"/></svg></span>
+                  <span class="hv-row-txt"><b>Nitro &amp; Trial Accounts</b><span>Manually claimed · UHQ</span></span>
+                  <svg class="icon-arr"><use href="#i-arrow"/></svg>
+                </a>
+                <a class="hv-row" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer" tabindex="-1">
+                  <span class="hv-ico"><svg class="icon"><use href="#i-rocket"/></svg></span>
+                  <span class="hv-row-txt"><b>Server Boosts</b><span>Very low revoke chance</span></span>
+                  <svg class="icon-arr"><use href="#i-arrow"/></svg>
+                </a>
+                <a class="hv-row" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer" tabindex="-1">
+                  <span class="hv-ico"><svg class="icon"><use href="#i-users"/></svg></span>
+                  <span class="hv-row-txt"><b>Members — Online &amp; Offline</b><span>Aged accounts · UHQ</span></span>
+                  <svg class="icon-arr"><use href="#i-arrow"/></svg>
+                </a>
+                <a class="hv-row" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer" tabindex="-1">
+                  <span class="hv-ico"><svg class="icon"><use href="#i-card"/></svg></span>
+                  <span class="hv-row-txt"><b>VCC — Virtual Cards</b><span>Promo cards are single-use</span></span>
+                  <svg class="icon-arr"><use href="#i-arrow"/></svg>
+                </a>
+                <a class="hv-row" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer" tabindex="-1">
+                  <span class="hv-ico"><svg class="icon"><use href="#i-cpu"/></svg></span>
+                  <span class="hv-row-txt"><b>Hosted Bots</b><span>Maintenance included</span></span>
+                  <svg class="icon-arr"><use href="#i-arrow"/></svg>
+                </a>
+                <a class="hv-row" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer" tabindex="-1">
+                  <span class="hv-ico"><svg class="icon"><use href="#i-coins"/></svg></span>
+                  <span class="hv-row-txt"><b>OwO Currency</b><span>Non-botted · Verified in ticket</span></span>
+                  <svg class="icon-arr"><use href="#i-arrow"/></svg>
+                </a>
+              </div>
+              <a class="hv-foot" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer" tabindex="-1">
+                <span class="l"><svg class="icon"><use href="#i-discord"/></svg>discord.gg/tdsmart</span>
+                <svg class="icon"><use href="#i-arrow"/></svg>
+              </a>
+            </div>
+            <span class="hv-chip hv-chip--a"><svg class="icon"><use href="#i-cursor"/></svg>Manual delivery</span>
+            <span class="hv-chip hv-chip--b"><svg class="icon"><use href="#i-shield"/></svg>UHQ quality</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="trustTitle">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Why TDS MART</p>
+          <h2 class="h2" id="trustTitle">Built around quality and support.</h2>
+          <p class="section-sub">No inflated numbers, no manufactured trust signals — just how the service actually operates.</p>
+        </div>
+        <div class="trust-grid" data-reveal>
+          <div class="trust-card">
+            <div class="trust-ico"><svg class="icon" aria-hidden="true"><use href="#i-gem"/></svg></div>
+            <h3>Quality Focused</h3>
+            <p>UHQ sourcing standards applied across the entire catalogue, not just flagship products.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-ico"><svg class="icon" aria-hidden="true"><use href="#i-cursor"/></svg></div>
+            <h3>Manual Delivery</h3>
+            <p>Key products are claimed, checked and delivered by hand — not dumped from automation.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-ico"><svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg></div>
+            <h3>Responsive Support</h3>
+            <p>Support, replacements and transactions are handled through a structured ticket system.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-ico"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></div>
+            <h3>Transparent Policies</h3>
+            <p>Terms are published per product category — including exactly what is and isn't warrantied.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-ico"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></div>
+            <h3>Long-Term Service</h3>
+            <p>An ongoing marketplace, built for repeat customers rather than one-off sales.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="products" aria-labelledby="productsTitle">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">The Catalogue</p>
+          <h2 class="h2" id="productsTitle">Premium products, clearly categorised.</h2>
+          <p class="section-sub">Every purchase is handled inside the Discord server through a ticket, directly with our team.</p>
+        </div>
+        <div class="products-note" data-reveal>
+          <svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>
+          <p>Product-specific terms may apply. Please review the <a href="#/terms">applicable terms</a> before purchasing.</p>
+        </div>
+        <div class="products-grid" id="productsGrid" data-reveal></div>
+        <div class="products-cta" data-reveal>
+          <p><b>All transactions take place inside the Discord server.</b><br>Stock, availability and product-specific terms are confirmed in your ticket.</p>
+          <a class="btn btn-ghost" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>
+            Open a Ticket
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="bybTitle">
+      <div class="wrap">
+        <div class="byb" data-reveal>
+          <div class="byb-grid">
+            <div>
+              <p class="byb-label"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg>Important</p>
+              <h2 id="bybTitle">Before you buy</h2>
+              <p>Not every product can have its complete terms displayed on the public website. Make sure the terms that apply to your order have been reviewed before any payment is sent.</p>
+              <div class="byb-actions">
+                <a class="btn btn-ghost btn--sm" href="#/terms">
+                  <svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>
+                  Read the Terms
+                </a>
+                <a class="btn btn-ghost btn--sm" href="#/rules">
+                  <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+                  Server Rules
+                </a>
+              </div>
+            </div>
+            <ol class="byb-points">
+              <li><span class="byb-num">01</span><span>Not every product can display its complete terms on a public website.</span></li>
+              <li><span class="byb-num">02</span><span>When terms are not displayed publicly, you <b style="color:var(--text-1)">must request and review</b> the applicable product-specific terms before purchasing.</span></li>
+              <li><span class="byb-num">03</span><span>By purchasing, you confirm that you have reviewed and accepted the applicable terms.</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq" aria-labelledby="faqTitle">
+      <div class="wrap faq-grid">
+        <div class="faq-side" data-reveal>
+          <p class="eyebrow">Answers</p>
+          <h2 class="h2" id="faqTitle">Frequently asked questions.</h2>
+          <p class="section-sub">Straight answers based on the published terms. If your question isn't covered here, ask inside a ticket.</p>
+          <a class="faq-side-cta" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer">
+            Ask in a ticket
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+        </div>
+        <div class="faq-list" id="faqList" data-reveal></div>
+      </div>
+    </section>
+
+    <section class="section cta" aria-labelledby="ctaTitle">
+      <div class="wrap--narrow" data-reveal>
+        <svg class="cta-mark" aria-hidden="true"><use href="#i-mark"/></svg>
+        <h2 id="ctaTitle">Join TDS MART</h2>
+        <p>Enter the official TDS MART community for products, support, tickets, updates and transactions.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>
+            Join Discord
+          </a>
+          <a class="btn btn-ghost" href="#/terms">Review the Terms</a>
+        </div>
+        <p class="cta-hint">Links open safely in a new tab — <a href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer">discord.gg/tdsmart</a></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= TERMS VIEW ================= -->
+  <div class="view" id="view-terms" hidden>
+    <div class="doc-hero">
+      <div class="wrap">
+        <a class="crumb" href="#" data-route="home"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>Back to home</a>
+        <p class="eyebrow">Documentation</p>
+        <h1>Terms of Service</h1>
+        <p class="section-sub">The terms that govern every product and transaction on TDS MART. Read them before purchasing — buying means accepting.</p>
+        <div class="doc-meta">
+          <div><b>Applies to</b>All products &amp; services</div>
+          <div><b>Transactions</b>Official Discord server</div>
+          <div><b>Questions</b>Open a ticket</div>
+        </div>
+      </div>
+    </div>
+    <div class="doc">
+      <div class="wrap doc-grid">
+        <nav class="doc-nav" id="tosNav" aria-label="Terms of Service sections"></nav>
+        <article class="doc-body" id="tosBody"></article>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= RULES VIEW ================= -->
+  <div class="view" id="view-rules" hidden>
+    <div class="doc-hero">
+      <div class="wrap">
+        <a class="crumb" href="#" data-route="home"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>Back to home</a>
+        <p class="eyebrow">Documentation</p>
+        <h1>Server Rules</h1>
+        <p class="section-sub">Community standards for the official TDS MART Discord server. Breaking these rules may result in moderation action.</p>
+        <div class="doc-meta">
+          <div><b>Scope</b>Entire Discord server</div>
+          <div><b>Enforcement</b>TDS MART staff</div>
+          <div><b>Version</b>Public website edition</div>
+        </div>
+      </div>
+    </div>
+    <div class="doc">
+      <div class="wrap doc-grid">
+        <nav class="doc-nav" id="rulesNav" aria-label="Server rules sections"></nav>
+        <article class="doc-body" id="rulesBody"></article>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#" data-route="home" aria-label="TDS MART — Home">
+          <svg class="brand-mark" aria-hidden="true"><use href="#i-mark"/></svg>
+          <span class="brand-name">TDS MART<small>Marketplace</small></span>
+        </a>
+        <p>Premium digital services, delivered through a trusted Discord marketplace.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="#" data-route="home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#/terms">Terms</a></li>
+          <li><a href="#/rules">Rules</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Community</h3>
+        <ul>
+          <li><a href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>Discord</a></li>
+          <li><a href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg>Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="#/terms">Terms of Service</a></li>
+          <li><a href="#/rules">Server Rules</a></li>
+          <li><a href="#tos-product-specific">Product Policies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 TDS MART. All rights reserved.</p>
+      <p class="note">TDS MART is a community marketplace and is not affiliated with, endorsed by, or sponsored by Discord Inc.</p>
+      <a class="to-top" href="#" data-route="home">Back to top <svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var $ = function(s,c){ return (c||document).querySelector(s); };
+var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+var DISCORD = "https://discord.gg/tdsmart";
+var mq = function(q){ try { return window.matchMedia ? window.matchMedia(q).matches : false; } catch(e){ return false; } };
+var reduced = mq("(prefers-reduced-motion: reduce)");
+
+/* ============================================================
+   DATA — Products
+   ============================================================ */
+var PRODUCTS = [
+  { name:"Nitro / Trial Accounts", cat:"Nitro", icon:"i-bolt", tos:"tos-nitro",
+    desc:"UHQ accounts, manually claimed. Covered by a 10-minute login warranty at the time of delivery." },
+  { name:"Server Boosts", cat:"Boosts", icon:"i-rocket", tos:"tos-boosts",
+    desc:"Manually claimed and delivered server boosts. UHQ quality with a very low revoke chance." },
+  { name:"Online Members", cat:"Growth", icon:"i-users", tos:"tos-members",
+    desc:"UHQ aged accounts providing online presence for your server, with a low termination chance." },
+  { name:"Offline Members", cat:"Growth", icon:"i-users-off", tos:"tos-members",
+    desc:"Aged accounts that populate your server's member list. UHQ quality throughout." },
+  { name:"VCC", cat:"Cards", icon:"i-card", tos:"tos-vcc",
+    desc:"Virtual credit cards. Promo VCCs are single-use; replacement follows the applicable conditions." },
+  { name:"Quest Bots", cat:"Bots", icon:"i-target", tos:"tos-bots",
+    desc:"Quest completion bots hosted on the TDS MART platform, with maintenance included." },
+  { name:"Other Bots", cat:"Bots", icon:"i-cpu", tos:"tos-bots",
+    desc:"Personal bots and bot subscriptions, hosted for you. Source code available separately." },
+  { name:"OwO", cat:"Currency", icon:"i-coins", tos:"tos-owo",
+    desc:"Non-botted OwO currency, verified together with you inside the ticket at delivery." }
+];
+
+/* ============================================================
+   DATA — Terms of Service
+   ============================================================ */
+var TOS = [
+  { id:"tos-general", num:"01", title:"General Terms", blocks:[
+    { t:"p", h:"These terms apply to all products and services offered through TDS MART. By making a purchase, you confirm that you have read, understood and accepted these terms together with any product-specific terms that apply to your order." },
+    { t:"p", h:"All transactions, deliveries and support requests are handled inside the official TDS MART Discord server. Purchases made outside the official server are not covered by these terms." },
+    { t:"call", kind:"info", title:"Purchasing means accepting", h:"Make sure the applicable terms — including product-specific terms — have been reviewed before any payment is sent." }
+  ]},
+  { id:"tos-nitro", num:"02", title:"Nitro / Trial Accounts", blocks:[
+    { t:"ul", items:[
+      "Accounts are UHQ quality.",
+      "Accounts are manually claimed.",
+      "These accounts are generally less-termed and have a lower chance of being affected by waves.",
+      "A 10-minute login warranty applies at the time of delivery.",
+      "Video proof is required for a replacement claim."
+    ]},
+    { t:"call", kind:"warn", title:"No term or wave warranty", h:"No term or wave warranty is provided. Replacement is only issued if the customer does not receive the trial or Nitro on the supplied Discord ID at the time of delivery." }
+  ]},
+  { id:"tos-boosts", num:"03", title:"Server Boosts", blocks:[
+    { t:"ul", items:[
+      "Boosts are manually claimed and manually delivered.",
+      "UHQ quality.",
+      "Very low revoke chances."
+    ]},
+    { t:"call", kind:"warn", title:"No revoke or termination warranty", h:"No revoke or termination warranty is provided for server boosts." }
+  ]},
+  { id:"tos-members", num:"04", title:"Online & Offline Members", blocks:[
+    { t:"ul", items:[
+      "UHQ quality — members come from aged accounts.",
+      "The target uptime is approximately 99.95%, but uptime is not guaranteed.",
+      "There is a lower chance of termination, but no termination warranty is provided.",
+      "If members are later terminated, the members already delivered remain on the customer's server where technically applicable.",
+      "No intentional risk is placed on the customer's server."
+    ]},
+    { t:"call", kind:"warn", title:"Read carefully", h:"Uptime figures are targets, not guarantees, and no specific TOS warranty is provided for offline members. These statements do not constitute absolute guarantees." }
+  ]},
+  { id:"tos-vcc", num:"05", title:"VCC", blocks:[
+    { t:"ul", items:[
+      "VCCs can potentially be terminated.",
+      "Replacement is available according to the applicable product conditions.",
+      "Promo VCCs are for one-time use only."
+    ]}
+  ]},
+  { id:"tos-bots", num:"06", title:"Quest Bots / Other Bots", blocks:[
+    { t:"ul", items:[
+      "Bots are hosted on the TDS MART platform.",
+      "Source code is not included with personal bots or bot subscriptions unless explicitly purchased.",
+      "Source code may be available separately at a different price.",
+      "New features are not automatically included — only features explicitly purchased by the customer are included.",
+      "Maintenance is free: errors or bugs in the purchased functionality are fixed without an additional maintenance fee."
+    ]},
+    { t:"call", kind:"info", title:"Scope of bot purchases", h:"Bot purchases cover the features you explicitly bought, hosted and maintained. Unlimited custom development is not included." }
+  ]},
+  { id:"tos-owo", num:"07", title:"OwO", blocks:[
+    { t:"ul", items:[
+      "OwO currency is non-botted.",
+      "Customers should verify the delivery inside the ticket.",
+      "The customer should verify the OwO cash and check the OwO bot or account during delivery to confirm authenticity."
+    ]},
+    { t:"call", kind:"warn", title:"Final once verified", h:"Once delivery has been completed and verified, no refund or replacement is provided." }
+  ]},
+  { id:"tos-refunds", num:"08", title:"Refunds & Replacements", blocks:[
+    { t:"p", h:"Payments are non-refundable once the applicable delivery has been completed, subject to the product-specific terms." },
+    { t:"p", h:"Replacements follow the conditions of the product purchased. For example, Nitro and trial account claims require video proof and apply only when the trial or Nitro was not received on the supplied Discord ID at the time of delivery." },
+    { t:"p", h:"All refund and replacement requests are handled through a ticket in the official Discord server." }
+  ]},
+  { id:"tos-vouch", num:"09", title:"Vouch Policy", blocks:[
+    { t:"ul", items:[
+      "A vouch is compulsory after a completed delivery.",
+      "Customers are expected to leave an honest vouch after receiving their product or service.",
+      "Failure to vouch may result in an NV tag — a no-vouch record that restricts buyer privileges, including negotiation, in future transactions.",
+      "Repeated, intentional refusal to follow the vouch policy may result in further action or disputes."
+    ]},
+    { t:"call", kind:"info", title:"Genuine vouches only", h:"Vouches must represent genuine transactions. Fake, manipulated, incentivized or misleading reviews are not tolerated in any form." }
+  ]},
+  { id:"tos-responsibility", num:"10", title:"Customer Responsibility", blocks:[
+    { t:"ul", items:[
+      "Review the applicable terms — including product-specific terms — before purchasing.",
+      "Verify your delivery inside the ticket before it is closed.",
+      "Provide accurate information during transactions.",
+      "Do not redistribute, resell, leak or share purchased bot files, keys, credentials or other digital assets without permission."
+    ]}
+  ]},
+  { id:"tos-product-specific", num:"11", title:"Product-Specific Terms", blocks:[
+    { t:"p", h:"Not every product can have its complete terms displayed on the public website." },
+    { t:"p", h:"When a product's complete terms are not displayed publicly, customers must request and review the applicable product-specific terms before purchasing." },
+    { t:"p", h:"By purchasing, the customer confirms that they have reviewed and accepted the applicable terms." },
+    { t:"call", kind:"warn", title:"Before you buy", h:"Do not send payment before the applicable product-specific terms have been requested and reviewed. This information is provided openly — use it." }
+  ]}
+];
+
+/* ============================================================
+   DATA — Server Rules
+   ============================================================ */
+var RULES = [
+  { group:"General Rules", gid:"rules-general", items:[
+    { id:"rules-respect", num:"01", title:"Respect", blocks:[
+      { t:"p", h:"Respect everyone in the server. Toxicity, harassment, hate, unnecessary drama, personal attacks or disruptive behavior are not permitted." }
+    ]},
+    { id:"rules-content", num:"02", title:"Prohibited Content", blocks:[
+      { t:"p", h:"NSFW, illegal, malicious, harmful or otherwise inappropriate content is prohibited." }
+    ]},
+    { id:"rules-channels", num:"03", title:"Use the Correct Channels", blocks:[
+      { t:"p", h:"Use the designated channels for their intended purpose:" },
+      { t:"ul", items:[ "Support","Tickets","Vouches","General discussion","Product-related questions" ]}
+    ]},
+    { id:"rules-staff", num:"04", title:"Staff Decisions", blocks:[
+      { t:"p", h:"Staff decisions must be respected. Repeatedly arguing with or attempting to undermine staff decisions may result in moderation action." }
+    ]}
+  ]},
+  { group:"Buying & Selling Rules", gid:"rules-trading", items:[
+    { id:"rules-fake-vouches", num:"05", title:"Fake Vouches", blocks:[
+      { t:"p", h:"Fake vouches, fabricated screenshots, manipulated evidence, impersonation or misleading claims are prohibited." }
+    ]},
+    { id:"rules-files", num:"06", title:"Purchased Files & Keys", blocks:[
+      { t:"p", h:"Do not redistribute, resell, leak, share or publicly distribute purchased bot files, keys, credentials or other digital assets without permission." }
+    ]},
+    { id:"rules-refunds", num:"07", title:"Refunds", blocks:[
+      { t:"p", h:"Payments are non-refundable once the applicable delivery has been completed, subject to the product-specific terms." }
+    ]},
+    { id:"rules-middleman", num:"08", title:"Middleman Deals", blocks:[
+      { t:"p", h:"Middleman transactions are permitted only when approved by trusted TDS MART staff." }
+    ]},
+    { id:"rules-fraud", num:"09", title:"Fraud & Chargebacks", blocks:[
+      { t:"p", h:"Scams, fraudulent transactions, malicious chargebacks, payment manipulation or other fraudulent activity may result in a permanent blacklist." }
+    ]},
+    { id:"rules-impersonation", num:"10", title:"Impersonation", blocks:[
+      { t:"p", h:"Do not impersonate TDS MART staff, sellers, customers or other members." }
+    ]},
+    { id:"rules-exploitation", num:"11", title:"Exploitation", blocks:[
+      { t:"p", h:"Do not intentionally exploit bugs, payment errors, bot errors, pricing mistakes or system vulnerabilities. Report issues to staff instead." }
+    ]},
+    { id:"rules-personal-info", num:"12", title:"Personal Information", blocks:[
+      { t:"p", h:"Do not publicly share another person's private information, credentials, payment information, tokens, passwords or other sensitive information." }
+    ]},
+    { id:"rules-advertising", num:"13", title:"Advertising", blocks:[
+      { t:"p", h:"Unauthorized advertising, unsolicited promotion, DM advertising, invite farming or promotion of competing services may be removed and may result in moderation action." }
+    ]},
+    { id:"rules-scamming", num:"14", title:"Scamming", blocks:[
+      { t:"p", h:"Attempted scams, social engineering, fake payment proof, fraudulent claims or deceptive transactions are strictly prohibited." }
+    ]},
+    { id:"rules-tickets", num:"15", title:"Ticket Abuse", blocks:[
+      { t:"p", h:"Do not create unnecessary, duplicate, fake or abusive tickets. Use tickets for genuine support or transactions." }
+    ]},
+    { id:"rules-staff-abuse", num:"16", title:"Staff Abuse", blocks:[
+      { t:"p", h:"Do not harass, threaten, manipulate or repeatedly DM staff regarding decisions or transactions." }
+    ]},
+    { id:"rules-integrity", num:"17", title:"Marketplace Integrity", blocks:[
+      { t:"p", h:"Customers and sellers must provide accurate information during transactions. Deliberately hiding important information may result in action." }
+    ]},
+    { id:"rules-enforcement", num:"18", title:"Rule Enforcement", blocks:[
+      { t:"p", h:"TDS MART staff may remove content, restrict access, mute, kick, ban, blacklist or take other reasonable action when necessary to protect the community." }
+    ]}
+  ]}
+];
+
+/* ============================================================
+   DATA — FAQ
+   ============================================================ */
+var FAQ = [
+  { q:"What is TDS MART?",
+    a:"TDS MART is a premium Discord-based marketplace offering digital products and services — including Nitro and trial accounts, server boosts, online and offline members, hosted bots, VCCs and OwO currency.",
+    link:null },
+  { q:"How do I purchase something?",
+    a:"Join the Discord server and open a ticket for the product you want. A member of our team handles the transaction and the delivery with you directly.",
+    link:null },
+  { q:"Where do I get support?",
+    a:"Inside the official Discord server, through the designated support and ticket channels. Please avoid DMing staff directly.",
+    link:null },
+  { q:"Do products have warranties?",
+    a:"It depends on the product. Nitro and trial accounts include a 10-minute login warranty, while other products — such as boosts or members — carry no term, wave, revoke or termination warranty. Check the <a href='#/terms'>Terms of Service</a> for the exact conditions.",
+    link:null },
+  { q:"Are all products refundable?",
+    a:"No. Payments are non-refundable once the applicable delivery has been completed, subject to the product-specific terms. OwO currency, for example, carries no refund or replacement after a verified delivery.",
+    link:null },
+  { q:"Where can I see product-specific terms?",
+    a:"Product categories are covered in the <a href='#/terms'>Terms of Service</a>. If a product's complete terms are not displayed publicly, you must request them in a ticket before purchasing.",
+    link:null },
+  { q:"How do I request a replacement?",
+    a:"Open a ticket in the Discord server. For Nitro and trial accounts, replacement claims require video proof and apply only when the trial or Nitro was not received on the supplied Discord ID at the time of delivery.",
+    link:null },
+  { q:"How do I verify my delivery?",
+    a:"Verify inside the ticket before it is closed. For OwO currency, check the delivered cash and the bot or account during delivery to confirm authenticity.",
+    link:null },
+  { q:"How do I leave a vouch?",
+    a:"After a completed delivery, leave an honest vouch in the designated vouch channel. A vouch is compulsory after every completed delivery.",
+    link:null },
+  { q:"What does NV mean?",
+    a:"NV is a tag applied when a completed delivery was not vouched. It creates a no-vouch record and restricts buyer privileges — including negotiation — in future transactions.",
+    link:null },
+  { q:"How do I contact staff?",
+    a:"Through the official channels and tickets inside the Discord server. Please don't open duplicate tickets or repeatedly DM staff.",
+    link:null },
+  { q:"Where is the Discord server?",
+    a:"At <a href='https://discord.gg/tdsmart' target='_blank' rel='noopener noreferrer'>discord.gg/tdsmart</a> — every product, transaction and support request happens there.",
+    link:null }
+];
+
+/* ============================================================
+   RENDER — Products
+   ============================================================ */
+function renderProducts(){
+  var grid = $("#productsGrid");
+  if(!grid) return;
+  grid.innerHTML = PRODUCTS.map(function(p){
+    return '<article class="product-card">' +
+      '<div class="product-top">' +
+        '<div class="product-ico"><svg class="icon" aria-hidden="true"><use href="#' + p.icon + '"/></svg></div>' +
+        '<span class="product-cat">' + p.cat + '</span>' +
+      '</div>' +
+      '<h3>' + p.name + '</h3>' +
+      '<p class="desc">' + p.desc + '</p>' +
+      '<div class="product-foot">' +
+        '<span class="avail">Via ticket</span>' +
+        '<a class="product-link" href="#' + p.tos + '">View Details <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>' +
+      '</div>' +
+    '</article>';
+  }).join("");
+}
+
+/* ============================================================
+   RENDER — Doc blocks (shared by TOS & Rules)
+   ============================================================ */
+function renderBlocks(blocks){
+  return blocks.map(function(b){
+    if(b.t === "p") return '<p>' + b.h + '</p>';
+    if(b.t === "ul") return '<ul>' + b.items.map(function(i){ return '<li>' + i + '</li>'; }).join("") + '</ul>';
+    if(b.t === "call"){
+      var icon = b.kind === "warn" ? "i-alert" : "i-info";
+      return '<aside class="callout callout--' + b.kind + '">' +
+        '<svg class="icon" aria-hidden="true"><use href="#' + icon + '"/></svg>' +
+        '<div><b>' + b.title + '</b><p>' + b.h + '</p></div></aside>';
+    }
+    return "";
+  }).join("");
+}
+
+function renderDoc(navEl, bodyEl, groups){
+  var nav = '<div class="doc-nav-group"><p class="doc-nav-title">On this page</p><ul>';
+  var body = "";
+  if(groups.length === 1 && !groups[0].group){
+    var secs = groups[0].items;
+    nav += secs.map(function(s){ return '<li><a href="#' + s.id + '"><i>' + s.num + '</i>' + s.title + '</a></li>'; }).join("");
+    nav += '</ul></div>';
+    body += secs.map(function(s){
+      return '<section class="doc-sec" id="' + s.id + '"><div class="doc-sec-card">' +
+        '<div class="doc-sec-head"><span class="doc-num">' + s.num + '</span><h2>' + s.title + '</h2></div>' +
+        renderBlocks(s.blocks) + '</div></section>';
+    }).join("");
+  } else {
+    nav = "";
+    groups.forEach(function(g){
+      nav += '<div class="doc-nav-group"><p class="doc-nav-title">' + g.group + '</p><ul>' +
+        g.items.map(function(s){ return '<li><a href="#' + s.id + '"><i>' + s.num + '</i>' + s.title + '</a></li>'; }).join("") +
+        '</ul></div>';
+      body += '<div class="doc-group-head" id="' + g.gid + '"><h2>' + g.group + '</h2></div>';
+      body += g.items.map(function(s){
+        return '<section class="doc-sec" id="' + s.id + '"><div class="doc-sec-card">' +
+          '<div class="doc-sec-head"><span class="doc-num">' + s.num + '</span><h2>' + s.title + '</h2></div>' +
+          renderBlocks(s.blocks) + '</div></section>';
+      }).join("");
+    });
+  }
+  navEl.innerHTML = nav;
+  bodyEl.innerHTML = body;
+}
+
+/* ============================================================
+   RENDER — FAQ
+   ============================================================ */
+function renderFaq(){
+  var list = $("#faqList");
+  if(!list) return;
+  list.innerHTML = FAQ.map(function(f, i){
+    return '<div class="faq-item">' +
+      '<h3 style="margin:0">' +
+        '<button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-' + i + '" id="faq-q-' + i + '">' +
+          '<span>' + f.q + '</span><span class="fx" aria-hidden="true"></span>' +
+        '</button>' +
+      '</h3>' +
+      '<div class="faq-a" id="faq-a-' + i + '" role="region" aria-labelledby="faq-q-' + i + '">' +
+        '<div class="faq-a-in"><p>' + f.a + '</p></div>' +
+      '</div>' +
+    '</div>';
+  }).join("");
+
+  $$(".faq-q", list).forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var item = btn.closest(".faq-item");
+      var open = item.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+}
+
+/* ============================================================
+   Routing (hash based, single-file "pages")
+   ============================================================ */
+var views = { home: $("#view-home"), terms: $("#view-terms"), rules: $("#view-rules") };
+var titles = { home: "TDS MART — Premium Digital Marketplace", terms: "Terms of Service — TDS MART", rules: "Server Rules — TDS MART" };
+
+function currentViewFor(el){
+  if(!el) return null;
+  if(views.terms.contains(el)) return "terms";
+  if(views.rules.contains(el)) return "rules";
+  if(views.home.contains(el)) return "home";
+  return null;
+}
+
+function activateView(name){
+  Object.keys(views).forEach(function(k){
+    views[k].hidden = (k !== name);
+  });
+  document.title = titles[name] || titles.home;
+  $$(".nav-links a").forEach(function(a){ a.removeAttribute("aria-current"); });
+  if(name === "terms"){ var t = $('.nav-links a[href="#/terms"]'); if(t) t.setAttribute("aria-current","page"); }
+  if(name === "rules"){ var r = $('.nav-links a[href="#/rules"]'); if(r) r.setAttribute("aria-current","page"); }
+  if(name === "home"){ var h = $('.nav-links a[data-spy="home"]'); if(h) h.setAttribute("aria-current","page"); }
+  closeMenu();
+}
+
+function handleHash(initial){
+  var h = window.location.hash || "";
+  if(h.indexOf("#/") === 0){
+    var route = h.slice(2).split("?")[0];
+    activateView(route === "rules" ? "rules" : "terms");
+    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "auto" });
+  } else {
+    activateView("home");
+    var id = h.slice(1);
+    if(id){
+      var el = document.getElementById(id);
+      if(el){
+        window.requestAnimationFrame(function(){
+          el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+        });
+        return;
+      }
+    }
+    if(initial){ window.scrollTo(0, 0); }
+  }
+}
+
+window.addEventListener("hashchange", function(){ handleHash(false); });
+
+/* Nav: "Home" links should reset to top */
+$$('a[data-route="home"]').forEach(function(a){
+  a.addEventListener("click", function(e){
+    e.preventDefault();
+    window.location.hash = "";
+    activateView("home");
+    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+  });
+});
+
+/* ============================================================
+   Mobile menu
+   ============================================================ */
+var menuToggle = $("#menuToggle");
+var mobileMenu = $("#mobileMenu");
+function openMenu(){
+  menuToggle.setAttribute("aria-expanded","true");
+  menuToggle.setAttribute("aria-label","Close menu");
+  mobileMenu.classList.add("open");
+  mobileMenu.setAttribute("aria-hidden","false");
+  document.body.classList.add("menu-open");
+  var first = $("a", mobileMenu);
+  if(first) window.setTimeout(function(){ first.focus(); }, 120);
+}
+function closeMenu(){
+  menuToggle.setAttribute("aria-expanded","false");
+  menuToggle.setAttribute("aria-label","Open menu");
+  mobileMenu.classList.remove("open");
+  mobileMenu.setAttribute("aria-hidden","true");
+  document.body.classList.remove("menu-open");
+}
+menuToggle.addEventListener("click", function(){
+  if(mobileMenu.classList.contains("open")) closeMenu(); else openMenu();
+});
+$$("a", mobileMenu).forEach(function(a){
+  a.addEventListener("click", closeMenu);
+});
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape" && mobileMenu.classList.contains("open")){ closeMenu(); menuToggle.focus(); }
+});
+
+/* ============================================================
+   Header state
+   ============================================================ */
+var header = $("#siteHeader");
+function onScroll(){ header.classList.toggle("scrolled", window.scrollY > 8); }
+window.addEventListener("scroll", onScroll, { passive:true });
+onScroll();
+
+/* ============================================================
+   Scroll reveals
+   ============================================================ */
+function initReveals(){
+  var els = $$("[data-reveal]");
+  if(reduced || !("IntersectionObserver" in window)){
+    els.forEach(function(el){ el.classList.add("in"); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+  els.forEach(function(el){ io.observe(el); });
+}
+
+/* ============================================================
+   Doc nav scroll-spy
+   ============================================================ */
+function initSpy(){
+  if(!("IntersectionObserver" in window)) return;
+  var navMap = {};
+  $$("#tosNav a, #rulesNav a").forEach(function(a){
+    var id = a.getAttribute("href").slice(1);
+    navMap[id] = a;
+  });
+  var sections = Object.keys(navMap).map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        var view = currentViewFor(en.target);
+        if(view !== "terms" && view !== "rules") return;
+        var scope = view === "terms" ? $("#tosNav") : $("#rulesNav");
+        $$("a", scope).forEach(function(a){ a.classList.remove("active"); });
+        var link = navMap[en.target.id];
+        if(link && link.closest(scope)) link.classList.add("active");
+      }
+    });
+  }, { rootMargin: "-18% 0px -68% 0px", threshold: 0 });
+  sections.forEach(function(s){ io.observe(s); });
+}
+
+/* ============================================================
+   Hero parallax (pointer-fine only, subtle)
+   ============================================================ */
+function initParallax(){
+  if(reduced || !mq("(pointer: fine)")) return;
+  var stack = $("#hvStack"), card = $("#hvCard");
+  if(!stack || !card) return;
+  var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+  function loop(){
+    cx += (tx - cx) * 0.08;
+    cy += (ty - cy) * 0.08;
+    card.style.transform = "translate3d(" + cx.toFixed(2) + "px," + cy.toFixed(2) + "px,0)";
+    if(Math.abs(tx - cx) > 0.05 || Math.abs(ty - cy) > 0.05){ raf = window.requestAnimationFrame(loop); }
+    else { raf = null; }
+  }
+  function kick(){ if(!raf) raf = window.requestAnimationFrame(loop); }
+  stack.addEventListener("mousemove", function(e){
+    var r = stack.getBoundingClientRect();
+    tx = ((e.clientX - r.left) / r.width - 0.5) * 10;
+    ty = ((e.clientY - r.top) / r.height - 0.5) * 8;
+    kick();
+  });
+  stack.addEventListener("mouseleave", function(){ tx = 0; ty = 0; kick(); });
+}
+
+/* ============================================================
+   Init
+   ============================================================ */
+renderProducts();
+renderDoc($("#tosNav"), $("#tosBody"), [{ items: TOS }]);
+renderDoc($("#rulesNav"), $("#rulesBody"), RULES);
+renderFaq();
+initReveals();
+initSpy();
+initParallax();
+handleHash(true);
+})();
+</script>
+</body>
+</html>
