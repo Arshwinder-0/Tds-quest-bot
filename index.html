@@ -36,7 +36,7 @@
   --surface-3:#191C22;
   --text-1:#F5F5F5;
   --text-2:#8E949E;
-  --text-3:#6A707A;
+  --text-3:#7A828E;
   --line:rgba(255,255,255,0.07);
   --line-strong:rgba(255,255,255,0.13);
   --accent:#C9A96E;
@@ -180,7 +180,7 @@ button{font-family:inherit}
 .btn-discord:hover{transform:translateY(-1px);border-color:var(--accent-line);background:var(--accent-soft)}
 .btn-discord .icon{color:var(--accent)}
 
-.btn--sm{padding:11px 18px;font-size:0.875rem;border-radius:10px}
+.btn--sm{padding:12px 18px;font-size:0.875rem;border-radius:10px;min-height:44px}
 
 /* ============================================================
    Header
@@ -246,6 +246,42 @@ button{font-family:inherit}
 .mobile-menu nav a:hover{color:var(--accent)}
 .mobile-menu-cta{margin-top:32px;display:flex;flex-direction:column;gap:12px}
 body.menu-open{overflow:hidden}
+
+/* ============================================================
+   Top banner
+   ============================================================ */
+.top-banner{
+  margin:0 0 clamp(36px,5.5vw,56px);
+  max-width:1040px;margin-inline:auto;
+}
+.top-banner-frame{
+  position:relative;
+  border:1px solid var(--line-strong);
+  border-radius:var(--radius-xl);
+  background:var(--surface-1);
+  box-shadow:var(--shadow-pop);
+  overflow:hidden;
+  padding:6px;
+}
+.top-banner-frame::before{
+  content:"";position:absolute;top:0;left:10%;right:10%;height:1px;z-index:2;
+  background:linear-gradient(90deg,transparent,rgba(228,210,168,0.35),transparent);
+}
+.top-banner-frame img{
+  display:block;width:100%;height:auto;
+  border-radius:calc(var(--radius-xl) - 4px);
+  background:var(--bg-1);
+}
+.top-banner-frame::after{
+  content:"";position:absolute;inset:6px;z-index:1;pointer-events:none;
+  border-radius:calc(var(--radius-xl) - 4px);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.04);
+}
+@media (max-width:560px){
+  .top-banner-frame{padding:4px}
+  .top-banner-frame img{border-radius:calc(var(--radius-xl) - 6px)}
+  .top-banner{margin-bottom:32px}
+}
 
 /* ============================================================
    Hero
@@ -891,6 +927,13 @@ body.menu-open{overflow:hidden}
   <div class="view" id="view-home">
 
     <section class="hero section--flush" aria-labelledby="heroTitle">
+      <div class="wrap">
+        <figure class="top-banner" id="topBanner" data-reveal>
+          <div class="top-banner-frame">
+            <img id="bannerImg" src="banner.gif" alt="TDS MART — official brand banner" fetchpriority="high">
+          </div>
+        </figure>
+      </div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <a class="hero-badge" href="https://discord.gg/tdsmart" target="_blank" rel="noopener noreferrer">
@@ -1540,20 +1583,21 @@ function handleHash(initial){
   if(h.indexOf("#/") === 0){
     var route = h.slice(2).split("?")[0];
     activateView(route === "rules" ? "rules" : "terms");
-    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "auto" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   } else {
-    activateView("home");
     var id = h.slice(1);
-    if(id){
-      var el = document.getElementById(id);
-      if(el){
-        window.requestAnimationFrame(function(){
+    var el = id ? document.getElementById(id) : null;
+    var targetView = el ? (currentViewFor(el) || "home") : "home";
+    activateView(targetView);
+    if(el){
+      window.requestAnimationFrame(function(){
+        if(typeof el.scrollIntoView === "function"){
           el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
-        });
-        return;
-      }
+        }
+      });
+    } else if(initial){
+      window.scrollTo(0, 0);
     }
-    if(initial){ window.scrollTo(0, 0); }
   }
 }
 
@@ -1644,7 +1688,7 @@ function initSpy(){
         var scope = view === "terms" ? $("#tosNav") : $("#rulesNav");
         $$("a", scope).forEach(function(a){ a.classList.remove("active"); });
         var link = navMap[en.target.id];
-        if(link && link.closest(scope)) link.classList.add("active");
+        if(link && scope.contains(link)) link.classList.add("active");
       }
     });
   }, { rootMargin: "-18% 0px -68% 0px", threshold: 0 });
@@ -1677,8 +1721,25 @@ function initParallax(){
 }
 
 /* ============================================================
+   Top banner — display when the asset loads, hide when missing
+   ============================================================ */
+function initBanner(){
+  var fig = $("#topBanner"), img = $("#bannerImg");
+  if(!fig || !img) return;
+  function hide(){ fig.hidden = true; }
+  if(img.complete && img.naturalWidth === 0){ hide(); return; }
+  img.addEventListener("error", hide);
+  img.addEventListener("load", function(){
+    img.removeAttribute("width");
+    fig.hidden = false;
+    fig.classList.add("in");
+  });
+}
+
+/* ============================================================
    Init
    ============================================================ */
+initBanner();
 renderProducts();
 renderDoc($("#tosNav"), $("#tosBody"), [{ items: TOS }]);
 renderDoc($("#rulesNav"), $("#rulesBody"), RULES);
